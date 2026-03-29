@@ -21,7 +21,7 @@ export default function Reservation() {
 
   useEffect(() => {
     if (date && selectedTime) {
-      fetch(`http://localhost:3000/api/reservations/booked?date=${date}&time=${selectedTime}`)
+      fetch(`/api/reservations/booked?date=${date}&time=${selectedTime}`)
         .then(res => res.json())
         .then(data => {
           if (data.bookedTables) {
@@ -61,7 +61,7 @@ export default function Reservation() {
         time: selectedTime,
       };
 
-      const res = await fetch("http://localhost:3000/api/reservations", {
+      const res = await fetch("/api/reservations", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(data)
