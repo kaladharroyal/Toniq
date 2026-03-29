@@ -35,7 +35,7 @@ app.use("/api", router);
 
 // Serve frontend static files in production
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const frontendPath = path.resolve(__dirname, "..", "tonique", "dist", "public");
+const frontendPath = path.resolve(__dirname, "..", "..", "tonique", "dist", "public");
 app.use(express.static(frontendPath));
 
 // SPA fallback — serve index.html for all non-API routes
