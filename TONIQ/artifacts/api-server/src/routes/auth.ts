@@ -19,14 +19,14 @@ router.post("/auth/login", async (req, res) => {
     }
 
     // Return a simple success with user info (basic auth token simulation)
-    res.status(200).json({ 
+    return res.status(200).json({ 
       success: true, 
       user: { id: user._id, username: user.username },
       token: "tonique_auth_token_" + Date.now() // Mock token for session storage
     });
   } catch (error: any) {
     logger.error({ err: error }, "Login error");
-    res.status(500).json({ error: "An error occurred during login" });
+    return res.status(500).json({ error: "An error occurred during login" });
   }
 });
 
