@@ -3,15 +3,19 @@
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
-    "preinstall": "npx only-allow pnpm",
-    "build": "pnpm run typecheck && pnpm -r --if-present run build",
+    "build": "pnpm -r --if-present run build",
     "dev": "pnpm -r --parallel run dev",
+    "start:api": "node --enable-source-maps ./artifacts/api-server/dist/index.mjs",
+    "build:api": "pnpm --filter @workspace/api-server run build",
+    "build:frontend": "pnpm --filter @workspace/tonique run build",
     "typecheck:libs": "tsc --build",
     "typecheck": "pnpm run typecheck:libs && pnpm -r --filter \"./artifacts/**\" --filter \"./scripts\" --if-present run typecheck"
   },
   "private": true,
   "devDependencies": {
+    "@rollup/rollup-linux-x64-gnu": "^4.60.0",
     "@rollup/rollup-win32-x64-msvc": "^4.60.0",
+    "lightningcss-linux-x64-gnu": "1.32.0",
     "lightningcss-win32-x64-msvc": "1.32.0",
     "prettier": "^3.8.1",
     "typescript": "~5.9.2"
@@ -20,7 +24,8 @@
     "supportedArchitectures": {
       "os": [
         "win32",
-        "darwin"
+        "darwin",
+        "linux"
       ],
       "cpu": [
         "x64",
