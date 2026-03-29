@@ -39,7 +39,7 @@ const frontendPath = path.resolve(__dirname, "..", "tonique", "dist", "public");
 app.use(express.static(frontendPath));
 
 // SPA fallback — serve index.html for all non-API routes
-app.get("*", (_req, res) => {
+app.get("*all", (_req, res) => {
   res.sendFile(path.join(frontendPath, "index.html"));
 });
 
