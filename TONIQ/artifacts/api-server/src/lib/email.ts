@@ -1,15 +1,5 @@
 import nodemailer from "nodemailer";
 
-const transporter = nodemailer.createTransport({
-  host: process.env.SMTP_HOST || "smtp.gmail.com",
-  port: Number(process.env.SMTP_PORT) || 587,
-  secure: false,
-  auth: {
-    user: process.env.SMTP_USER || "",
-    pass: process.env.SMTP_PASS || ""
-  }
-});
-
 interface ReservationEmail {
   to: string;
   name: string;
@@ -24,6 +14,16 @@ export async function sendConfirmationEmail(data: ReservationEmail) {
     console.log("SMTP not configured — skipping email for", data.to);
     return;
   }
+
+  const transporter = nodemailer.createTransport({
+    host: process.env.SMTP_HOST || "smtp.gmail.com",
+    port: Number(process.env.SMTP_PORT) || 587,
+    secure: false,
+    auth: {
+      user: process.env.SMTP_USER,
+      pass: process.env.SMTP_PASS
+    }
+  });
 
   const html = `
     <div style="font-family: 'Georgia', serif; max-width: 600px; margin: 0 auto; background: #09090b; color: #fff; border-radius: 8px; overflow: hidden;">
