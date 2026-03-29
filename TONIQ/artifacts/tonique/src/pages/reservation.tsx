@@ -68,6 +68,7 @@ export default function Reservation() {
       });
       if (!res.ok) throw new Error("Failed to book");
       setSubmitted(true);
+      window.scrollTo(0, 0);
     } catch (err) {
       alert("Failed to confirm reservation. Is your API server running?");
     } finally {
