@@ -46,7 +46,7 @@ function App() {
 
   const fetchReservations = async () => {
     try {
-      const res = await fetch("http://localhost:3000/api/reservations");
+      const res = await fetch("https://toniq-ozrn.onrender.com/api/reservations");
       if (!res.ok) throw new Error("Failed");
       const data = await res.json();
       setReservations(data);
@@ -59,7 +59,7 @@ function App() {
 
   const fetchTables = async () => {
     try {
-      const res = await fetch("http://localhost:3000/api/tables");
+      const res = await fetch("https://toniq-ozrn.onrender.com/api/tables");
       if (!res.ok) throw new Error("Failed");
       const data = await res.json();
       setTables(data);
@@ -70,7 +70,7 @@ function App() {
 
   const releaseTable = async (id: string) => {
     try {
-      const res = await fetch(`http://localhost:3000/api/reservations/${id}/release`, {
+      const res = await fetch(`https://toniq-ozrn.onrender.com/api/reservations/${id}/release`, {
         method: "PATCH",
       });
       if (!res.ok) throw new Error("Failed to release");
@@ -92,14 +92,14 @@ function App() {
 
     try {
       if (editingTable) {
-        const res = await fetch(`http://localhost:3000/api/tables/${editingTable._id}`, {
+        const res = await fetch(`https://toniq-ozrn.onrender.com/api/tables/${editingTable._id}`, {
           method: "PUT",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(payload)
         });
         if (!res.ok) throw new Error("Failed to update");
       } else {
-        const res = await fetch("http://localhost:3000/api/tables", {
+        const res = await fetch("https://toniq-ozrn.onrender.com/api/tables", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(payload)
@@ -121,7 +121,7 @@ function App() {
   const deleteTable = async (id: string) => {
     if (!confirm("Are you sure you want to delete this table?")) return;
     try {
-      const res = await fetch(`http://localhost:3000/api/tables/${id}`, { method: "DELETE" });
+      const res = await fetch(`https://toniq-ozrn.onrender.com/api/tables/${id}`, { method: "DELETE" });
       if (!res.ok) throw new Error("Failed");
       fetchTables();
     } catch (err) {
