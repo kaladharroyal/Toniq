@@ -1,0 +1,5 @@
+0000000000000000000000000000000000000000 0039a0782887615ca6ddd471b28e060a45ff29aa Kaladhar Royal <kaladharroyal@gmail.com> 1774718944 +0530	branch: Created from HEAD
+0039a0782887615ca6ddd471b28e060a45ff29aa 2962a4df704c8d175adb5b9472fdac7c02bf853c Kaladhar Royal <kaladharroyal@gmail.com> 1774718945 +0530	commit: update: reservation, API server, and contact features
+2962a4df704c8d175adb5b9472fdac7c02bf853c cc39cefcb71aa3e2e96b671e5c82410b3cd410aa Kaladhar Royal <kaladharroyal@gmail.com> 1774718980 +0530	pull --rebase origin developer (finish): refs/heads/developer onto 670349ca707da2f9dd8b7dc15794a5e4fba89dbf
+cc39cefcb71aa3e2e96b671e5c82410b3cd410aa 1a2c9db30817fb1a0b3e064fbe4ee0bd72cece90 Kaladhar Royal <kaladharroyal@gmail.com> 1774719272 +0530	commit: add: Admin Panel project source code
+1a2c9db30817fb1a0b3e064fbe4ee0bd72cece90 a6edafdd5f212d41f135d213d363c13def2a7991 Kaladhar Royal <kaladharroyal@gmail.com> 1774725679 +0530	commit: feat: table management CRUD, tables view grid, date calendar sidebar, email confirmation on booking

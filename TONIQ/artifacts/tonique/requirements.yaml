@@ -1,0 +1,12 @@
+packages:
+  "framer-motion": "Smooth page transitions and scroll-reveals for a luxury feel"
+  "clsx": "Utility for constructing className strings conditionally"
+  "tailwind-merge": "Utility to merge tailwind classes safely"
+  "lucide-react": "Beautiful consistent icons"
+
+images: []
+
+notes:
+  - "Pure frontend implementation as requested, no backend APIs required."
+  - "Using CSS gradients/placeholders for all images as specified in the prompt."
+  - "Theme is forced dark mode for luxury nightlife aesthetic."

@@ -1,0 +1,157 @@
+Design a modern, premium multi-page restaurant website UI in Figma for **"Tonique Restaurant & Bar"**.
+
+### 🎨 Design Style
+
+* Theme: Dark, elegant, nightlife vibe
+* Colors:
+
+  * Background: Deep black (#0f0f0f)
+  * Accent: Gold / Orange (#f59e0b)
+  * Text: White / light gray
+* Style: Luxury + party atmosphere (bar + restaurant)
+* Use soft shadows, glassmorphism, and subtle glow effects
+
+---
+
+### 📱 Responsiveness
+
+Design for:
+
+* Desktop (1440px)
+* Tablet (768px)
+* Mobile (375px)
+
+---
+
+### 🧱 Pages to Design
+
+#### 1. Home Page
+
+Sections:
+
+* Hero section (large background image with overlay text)
+
+  * Heading: “Craft Cocktails. Unforgettable Nights.”
+  * Buttons: “Reserve Table”, “View Menu”
+* Highlights (Cocktails, Ambience, Party vibe)
+* Featured Menu preview (cards with images, no prices)
+* Gallery preview (grid layout)
+* Customer reviews (card slider style)
+* CTA section (Reserve Now)
+
+---
+
+#### 2. Menu Page
+
+* Category tabs:
+
+  * Starters
+  * Main Course
+  * Cocktails
+  * Mocktails
+  * Desserts
+* Menu cards:
+
+  * Image (placeholder)
+  * Dish name
+  * Short description
+* No prices
+* Clean grid layout
+
+---
+
+#### 3. Gallery Page
+
+* Sections:
+
+  * Dining Area
+  * Interior
+  * Bar Area
+  * Ambience
+* Masonry/grid layout
+* Image hover effects (zoom + overlay)
+
+---
+
+#### 4. Reservation Page
+
+* Form UI:
+
+  * Name
+  * Phone
+  * Date picker
+  * Time slots (buttons)
+  * Guests dropdown
+* Show:
+
+  * Available vs unavailable slots (disabled style)
+* Submit button: “Book Table”
+
+---
+
+#### 5. About Page
+
+* Story section
+* Chef / team section
+* Interior images
+* Brand vibe
+
+---
+
+#### 6. Contact Page
+
+* Address
+* Phone number
+* Opening hours
+* Map placeholder
+* Call-to-action button
+
+---
+
+### 🧩 Components to Create
+
+* Navbar (sticky, transparent → solid on scroll)
+* Footer (social icons, links)
+* Buttons (primary, secondary, hover glow)
+* Cards (menu, gallery, reviews)
+* Form inputs (dark theme)
+* Image placeholders (easy to replace)
+
+---
+
+### 🖼️ Image Handling (IMPORTANT)
+
+* Use placeholder rectangles with labels:
+
+  * “Replace Image”
+* Maintain consistent aspect ratios
+* Keep images as components for easy swapping
+
+---
+
+### ✨ Interactions (Prototype)
+
+* Hover effects on buttons and cards
+* Smooth transitions between pages
+* Clickable navigation
+* Active state for menu tabs
+
+---
+
+### 🧠 UX Focus
+
+* Clean spacing and hierarchy
+* Visual storytelling (ambience > text)
+* Easy navigation
+* Strong call-to-action for reservations
+
+---
+
+### 📦 Deliverables
+
+* Organized Figma file
+* Pages separated clearly
+* Components reusable
+* Auto layout used for responsiveness
+
+Make the design visually rich, modern, and focused on showcasing ambience, cocktails, and dining experience rather than detailed food pricing.
