@@ -31,6 +31,12 @@ function App() {
   const [activeTab, setActiveTab] = useState<"overview" | "management" | "view">("overview");
   const ITEMS_PER_PAGE = 10;
 
+  // Authentication State
+  const [isAuthenticated, setIsAuthenticated] = useState(localStorage.getItem("toniq_admin_auth") === "true");
+  const [loginData, setLoginData] = useState({ username: "", password: "" });
+  const [authLoading, setAuthLoading] = useState(false);
+  const [authError, setAuthError] = useState("");
+
   // Table Management state
   const [tables, setTables] = useState<TableData[]>([]);
   const [editingTable, setEditingTable] = useState<TableData | null>(null);
@@ -43,6 +49,35 @@ function App() {
     description: ""
   });
   const [selectedDate, setSelectedDate] = useState(new Date().toISOString().split("T")[0]);
+
+  const handleLogin = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setAuthLoading(true);
+    setAuthError("");
+    try {
+      const res = await fetch("https://toniq-ozrn.onrender.com/api/auth/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(loginData),
+      });
+      const data = await res.json();
+      if (res.ok && data.success) {
+        localStorage.setItem("toniq_admin_auth", "true");
+        setIsAuthenticated(true);
+      } else {
+        setAuthError(data.error || "Invalid credentials");
+      }
+    } catch (err) {
+      setAuthError("Server connection failed");
+    } finally {
+      setAuthLoading(false);
+    }
+  };
+
+  const handleLogout = () => {
+    localStorage.removeItem("toniq_admin_auth");
+    setIsAuthenticated(false);
+  };
 
   const fetchReservations = async () => {
     try {
@@ -149,11 +184,56 @@ function App() {
   };
 
   useEffect(() => {
-    fetchReservations();
-    fetchTables();
-    const interval = setInterval(fetchReservations, 10000);
-    return () => clearInterval(interval);
-  }, []);
+    if (isAuthenticated) {
+      fetchReservations();
+      fetchTables();
+      const interval = setInterval(fetchReservations, 10000);
+      return () => clearInterval(interval);
+    }
+  }, [isAuthenticated]);
+
+  if (!isAuthenticated) {
+    return (
+      <div className="login-container">
+        <div className="login-card">
+          <div className="login-header">
+            <div className="login-logo">T</div>
+            <h1>Tonique Admin</h1>
+            <p>Please enter your credentials to continue</p>
+          </div>
+          <form onSubmit={handleLogin} className="login-form">
+            <div className="form-group">
+              <label>Username</label>
+              <input
+                type="text"
+                placeholder="Enter username"
+                required
+                value={loginData.username}
+                onChange={(e) => setLoginData({ ...loginData, username: e.target.value })}
+              />
+            </div>
+            <div className="form-group">
+              <label>Password</label>
+              <input
+                type="password"
+                placeholder="Enter password"
+                required
+                value={loginData.password}
+                onChange={(e) => setLoginData({ ...loginData, password: e.target.value })}
+              />
+            </div>
+            {authError && <p className="auth-error">{authError}</p>}
+            <button type="submit" className="login-submit" disabled={authLoading}>
+              {authLoading ? "Verifying..." : "Login to Dashboard"}
+            </button>
+          </form>
+          <div className="login-footer">
+            <p>&copy; 2025 Tonique Restaurant &bull; Secure Access</p>
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="admin-container">
@@ -163,6 +243,9 @@ function App() {
             <h1>Tonique Admin Panel</h1>
             <p>Live Reservation Dashboard</p>
           </div>
+          <button className="logout-btn" onClick={handleLogout}>
+            Logout
+          </button>
         </div>
         <nav className="header-tabs">
           <button
