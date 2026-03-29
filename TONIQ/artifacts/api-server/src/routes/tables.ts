@@ -9,6 +9,7 @@ router.get("/tables", async (req: Request, res: Response): Promise<void> => {
     const tables = await Table.find().sort({ tableNumber: 1 });
     res.json(tables);
   } catch (error) {
+    console.error("GET /tables error:", error);
     res.status(500).json({ error: "Failed to fetch tables" });
   }
 });
@@ -23,6 +24,7 @@ router.get("/tables/:id", async (req: Request, res: Response): Promise<void> => 
     }
     res.json(table);
   } catch (error) {
+    console.error("GET /tables/:id error:", error);
     res.status(500).json({ error: "Failed to fetch table" });
   }
 });
@@ -38,6 +40,7 @@ router.post("/tables", async (req: Request, res: Response): Promise<void> => {
     const table = await Table.create(req.body);
     res.status(201).json(table);
   } catch (error) {
+    console.error("POST /tables error:", error);
     res.status(500).json({ error: "Failed to create table" });
   }
 });
@@ -52,6 +55,7 @@ router.put("/tables/:id", async (req: Request, res: Response): Promise<void> => 
     }
     res.json(table);
   } catch (error) {
+    console.error("PUT /tables/:id error:", error);
     res.status(500).json({ error: "Failed to update table" });
   }
 });
@@ -66,6 +70,7 @@ router.delete("/tables/:id", async (req: Request, res: Response): Promise<void> 
     }
     res.json({ message: "Table deleted successfully" });
   } catch (error) {
+    console.error("DELETE /tables/:id error:", error);
     res.status(500).json({ error: "Failed to delete table" });
   }
 });

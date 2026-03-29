@@ -23,6 +23,7 @@ router.get("/reservations/booked", async (req: Request, res: Response): Promise<
     const bookedTables = activeReservations.map(r => r.tableNumber);
     res.json({ bookedTables });
   } catch (error) {
+    console.error("GET /reservations/booked error:", error);
     res.status(500).json({ error: "Failed to read booked tables" });
   }
 });
@@ -44,6 +45,7 @@ router.patch("/reservations/:id/release", async (req: Request, res: Response): P
     
     res.json({ message: "Table released successfully", reservation });
   } catch (error) {
+    console.error("PATCH /reservations/:id/release error:", error);
     res.status(500).json({ error: "Failed to release the table" });
   }
 });
@@ -69,6 +71,7 @@ router.get("/reservations", async (req: Request, res: Response): Promise<void> =
     
     res.json(formattedData);
   } catch (error) {
+    console.error("GET /reservations error:", error);
     res.status(500).json({ error: "Failed to read reservations" });
   }
 });
@@ -96,6 +99,7 @@ router.post("/reservations", async (req: Request, res: Response): Promise<void> 
       id: newReservation._id.toString()
     });
   } catch (error) {
+    console.error("POST /reservations error:", error);
     res.status(500).json({ error: "Failed to save reservation" });
   }
 });
