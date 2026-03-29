@@ -1,57 +1,90 @@
-Tonique Workspace
-A premium hospitality and nightlife monorepo built with React, Express, and PostgreSQL. This project uses a pnpm workspace architecture for efficient package management and shared libraries.
+# Tonique Workspace 🍸
+A premium, high-performance hospitality and nightlife monorepo built with React, Express, and MongoDB. This project uses a `pnpm` workspace architecture for efficient package management and a highly integrated admin ecosystem.
 
-🌟 Overview
-Tonique is a sophisticated restaurant and nightlife platform designed to provide an immersive dining experience through a high-performance web application.
+🌟 **Overview**
+Tonique is a sophisticated restaurant and nightlife platform designed to provide an immersive dining experience. It features a cinematic customer-facing reservation system and a robust administrative dashboard for real-time table and booking management.
 
-🛠️ Technology Stack
-Monorepo Management: pnpm Workspaces
-Frontend: React, Vite, Framer Motion, Tailwind CSS
-Backend: Express 5, Node.js 24
-Database: PostgreSQL with Drizzle ORM
-Type Safety: TypeScript 5.9, Zod
-API Tooling: OpenAPI 3.1, Orval for codegen
-📂 Project Structure
-Restaurant-Site-Design/
-├── artifacts/              # Deployable applications
-│   ├── tonique/            # React/Vite Frontend (Main Site)
-│   └── api-server/         # Express API Server
+---
+
+## 🛠️ Technology Stack
+- **Monorepo Management**: `pnpm` Workspaces
+- **Frontend**: React 18, Vite, Framer Motion, Vanilla CSS (Premium Glassmorphism)
+- **Backend**: Express 5 (Node.js 22/24)
+- **Database**: MongoDB Atlas
+- **Authentication**: Custom Admin Auth with Session Persistence
+- **Communication**: SMTP (NodeMailer) for automated reservation confirmations
+- **Type Safety**: TypeScript 5.x
+
+---
+
+## 📂 Project Structure
+```text
+TONIQ/
+├── AdminPanel/              # Premium Admin Dashboard (React/Vite)
+│   ├── src/                 # Dashboard UI & Logic
+│   └── public/              # Static Assets
 │
-├── lib/                    # Shared workspace libraries
-│   ├── api-spec/           # OpenAPI specifications & Orval configuration
-│   ├── api-client-react/   # Generated React Query hooks for the frontend
-│   ├── api-zod/            # Generated Zod schemas for validation
-│   └── db/                 # Database schema definitions and Drizzle client
+├── TONIQ/                   # Main Application Monorepo
+│   ├── artifacts/           
+│   │   ├── tonique/         # Customer Frontend (Main Site)
+│   │   └── api-server/      # Unified Express API Server & Static Host
+│   │
+│   ├── pnpm-workspace.yaml  # Workspace definition
+│   └── package.json         # Unified build scripts for Render
 │
-├── scripts/                # Internal utility and maintenance scripts
-│
-├── pnpm-workspace.yaml     # Workspace definition
-├── tsconfig.json           # Root TypeScript configuration (Project References)
-└── package.json            # Root package with workspace scripts
-🚀 Getting Started
-Prerequisites
-Node.js 24+
-pnpm 9+
-Installation
+├── readme.md                # Project Documentation
+└── .env                     # Environment Configuration (API Keys, DB URIs)
+```
+
+---
+
+## 🚀 Getting Started
+
+### Prerequisites
+- **Node.js**: 22+
+- **pnpm**: 9+
+- **MongoDB**: Access to an Atlas Cluster
+
+### Installation
+```bash
 # Install dependencies for the entire workspace
 pnpm install
-Development
-You can run individual applications or the entire stack:
+```
 
-# Run all applications (Frontend & Backend) in parallel
-pnpm dev
+### Development
+You can run individual applications or the entire stack in parallel:
 
-# Run specific applications
-pnpm --filter @workspace/tonique run dev    # Frontend only
-pnpm --filter @workspace/api-server run dev # Backend only
-Building
-# Build the entire workspace
-pnpm build
-Type Checking
-The project uses TypeScript Project References. For accurate type checking across the workspace, always run from the root:
+```bash
+# Run the Main Site & API
+cd TONIQ
+pnpm run dev
 
-pnpm run typecheck
-📜 Coding Standards
-Type Safety: Avoid any. Use the generated Zod schemas and TypeScript interfaces.
-Styling: Use Tailwind CSS with the provided design system tokens.
-Shared Code: Libraries in lib/ should be used for any logic shared between the frontend and backend.
+# Run the Admin Panel
+cd AdminPanel
+pnpm run dev
+```
+
+---
+
+## 🌐 Deployment (Render)
+
+### Main Web Service (Backend + Main Site)
+- **Service Type**: Web Service
+- **Build Command**: `npm i -g pnpm && pnpm install --no-frozen-lockfile && pnpm run build:render`
+- **Start Command**: `node artifacts/api-server/dist/index.mjs`
+
+### Admin Panel (Static Site)
+- **Service Type**: Static Site
+- **Root Directory**: `AdminPanel`
+- **Build Command**: `npm install && npm run build`
+- **Publish Directory**: `dist`
+
+---
+
+## 📜 Coding Standards
+- **Aesthetics**: Follow the "Premium Nightlife" design language—dark modes, glassmorphism, and gold/amber accents.
+- **API Calls**: Always use relative paths (`/api/...`) for the main site and the production URL for the separate Admin Panel.
+- **Type Safety**: Maintain strict TypeScript interfaces for all Reservation and Table data models.
+
+---
+© 2025 Tonique Restaurant Group. All rights reserved.
