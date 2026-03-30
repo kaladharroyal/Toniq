@@ -92,7 +92,13 @@ router.post("/reservations", async (req: Request, res: Response): Promise<void> 
       time: newReservation.time as string,
       tableNumber: newReservation.tableNumber as string,
       guests: newReservation.guests as string
-    }).catch(err => console.error("Email send failed:", err));
+    }).catch(err => {
+      console.error("Email Service Error Detail:");
+      console.error("Code:", err.code);
+      console.error("Command:", err.command);
+      console.error("Response:", err.response);
+      console.error("Stack:", err.stack);
+    });
 
     res.status(201).json({
       ...newReservation.toObject(),

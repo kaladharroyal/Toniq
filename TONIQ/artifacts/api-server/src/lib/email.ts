@@ -11,7 +11,7 @@ interface ReservationEmail {
 
 export async function sendConfirmationEmail(data: ReservationEmail) {
   if (!process.env.SMTP_USER || !process.env.SMTP_PASS) {
-    console.log("SMTP not configured — skipping email for", data.to);
+    console.warn("SMTP credentials missing from environment (SMTP_USER or SMTP_PASS) — confirmation email will NOT be sent.");
     return;
   }
 
