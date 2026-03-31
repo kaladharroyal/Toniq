@@ -92,7 +92,7 @@ export default function Home() {
           <div className="flex flex-col md:flex-row justify-between items-end mb-16">
             <div>
               <h2 className="text-primary tracking-widest uppercase text-sm mb-3">Taste The Excellence</h2>
-              <h3 className="text-4xl md:text-5xl text-white font-display">Signature Signatures</h3>
+              <h3 className="text-4xl md:text-5xl text-white font-display">Chef's Signatures</h3>
             </div>
             <Link href="/menu" className="hidden md:flex items-center gap-2 text-primary hover:text-white transition-colors tracking-widest uppercase text-sm mt-6">
               Full Menu <ArrowRight size={16} />
@@ -101,10 +101,10 @@ export default function Home() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {[
-              { name: "Smoked Old Fashioned", desc: "Bourbon, bitters, cherry wood smoke", tag: "Cocktail" },
-              { name: "Truffle Arancini", desc: "Wild mushroom, mozzarella, truffle aioli", tag: "Starter" },
-              { name: "Wagyu Ribeye", desc: "A5 grade, charred asparagus, bone marrow jus", tag: "Main" },
-              { name: "Midnight Martini", desc: "Rye, coffee liqueur, black walnut", tag: "Cocktail" }
+              { name: "Chicken 555", desc: "Spicy deep-fried chicken with fiery seasoning", tag: "Appetizer" },
+              { name: "Rambo Biryani", desc: "Extra-loaded signature biryani with bold flavors", tag: "Main Course" },
+              { name: "Chicken Manchow Soup", desc: "Spiced chicken broth topped with crispy fried noodles", tag: "Soup" },
+              { name: "Gold Leaf Entremet", desc: "Dark chocolate mousse, hazelnut praline, 24k gold", tag: "Dessert" }
             ].map((item, i) => (
               <div key={i} className="group relative overflow-hidden bg-black border border-white/10 hover:border-primary/50 transition-colors duration-500">
                 <PlaceholderImage label={`Menu Item: ${item.name}`} aspectRatio="tall" className="w-full" />
