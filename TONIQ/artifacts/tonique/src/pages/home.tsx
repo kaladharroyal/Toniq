@@ -101,14 +101,14 @@ export default function Home() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {[
-              { name: "Chicken 555", desc: "Spicy deep-fried chicken with fiery seasoning", tag: "Appetizer" },
-              { name: "Rambo Biryani", desc: "Extra-loaded signature biryani with bold flavors", tag: "Main Course" },
-              { name: "Chicken Manchow Soup", desc: "Spiced chicken broth topped with crispy fried noodles", tag: "Soup" },
-              { name: "Gold Leaf Entremet", desc: "Dark chocolate mousse, hazelnut praline, 24k gold", tag: "Dessert" }
+              { name: "Chicken 555", desc: "Spicy deep-fried chicken with fiery seasoning", tag: "Appetizer", cat: "Appetizer" },
+              { name: "Rambo Biryani", desc: "Extra-loaded signature biryani with bold flavors", tag: "Main Course", cat: "Main Course" },
+              { name: "Chicken Manchow Soup", desc: "Spiced chicken broth topped with crispy fried noodles", tag: "Soup", cat: "Soups" },
+              { name: "Gold Leaf Entremet", desc: "Dark chocolate mousse, hazelnut praline, 24k gold", tag: "Dessert", cat: "Desserts" }
             ].map((item, i) => (
-              <div key={i} className="group relative overflow-hidden bg-black border border-white/10 hover:border-primary/50 transition-colors duration-500">
+              <Link href={`/menu#${item.cat}`} key={i} className="group relative overflow-hidden bg-black border border-white/10 hover:border-primary/50 transition-colors duration-500 block">
                 <PlaceholderImage label={`Menu Item: ${item.name}`} aspectRatio="tall" className="w-full" />
-                <div className="absolute top-4 right-4 bg-black/60 backdrop-blur-md px-3 py-1 text-xs text-primary uppercase tracking-widest border border-white/10">
+                <div className="absolute top-4 right-4 bg-black/60 backdrop-blur-md px-3 py-1 text-xs text-primary uppercase tracking-widest border border-white/10 group-hover:bg-primary/20 transition-colors">
                   {item.tag}
                 </div>
                 <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent opacity-80" />
@@ -116,7 +116,7 @@ export default function Home() {
                   <h4 className="text-xl text-white font-display tracking-wide mb-2">{item.name}</h4>
                   <p className="text-white/60 text-sm opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100">{item.desc}</p>
                 </div>
-              </div>
+              </Link>
             ))}
           </div>
           

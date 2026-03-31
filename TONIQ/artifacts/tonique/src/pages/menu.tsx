@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { PlaceholderImage } from "@/components/ui/placeholder-image";
 import { cn } from "@/lib/utils";
@@ -115,6 +115,32 @@ const menuData: Record<string, MenuItem[]> = {
 export default function Menu() {
   const [activeCategory, setActiveCategory] = useState(menuCategories[0]);
   const [selectedVariants, setSelectedVariants] = useState<Record<string, number>>({});
+
+  useEffect(() => {
+    const handleHashChange = () => {
+      const hash = window.location.hash.replace("#", "");
+      if (hash) {
+        const decodedHash = decodeURIComponent(hash);
+        const category = menuCategories.find(
+          (c) => c.toLowerCase() === decodedHash.toLowerCase()
+        );
+        if (category) {
+          setActiveCategory(category);
+          // Optional: scroll slightly down so the menu items are visible
+          setTimeout(() => {
+            window.scrollTo({
+              top: window.innerHeight * 0.4,
+              behavior: "smooth"
+            });
+          }, 100);
+        }
+      }
+    };
+
+    handleHashChange();
+    window.addEventListener("hashchange", handleHashChange);
+    return () => window.removeEventListener("hashchange", handleHashChange);
+  }, []);
 
   const getVariantIndex = (itemName: string) => selectedVariants[itemName] ?? 0;
   const setVariantIndex = (itemName: string, idx: number) =>
