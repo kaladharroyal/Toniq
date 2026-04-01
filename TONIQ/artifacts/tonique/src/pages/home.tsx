@@ -36,32 +36,32 @@ export default function Home() {
           <div className="absolute inset-0 bg-black/60 z-10" />
           <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent z-10" />
         </div>
-        
-        <motion.div 
+
+        <motion.div
           initial="hidden"
           animate="visible"
           variants={staggerContainer}
           className="relative z-20 text-center px-4 max-w-4xl mx-auto mt-20"
         >
           <motion.h2 variants={fadeUp} className="text-primary tracking-[0.3em] uppercase text-sm md:text-base mb-6 font-semibold">
-            Welcome to Tonique
+            Welcome to TONIQE
           </motion.h2>
           <motion.h1 variants={fadeUp} className="text-4xl md:text-5xl lg:text-6xl text-white font-display leading-snug mb-8">
-            Craft Cocktails.<br/>
+            Craft Cocktails.<br />
             <span className="text-primary">Unforgettable Nights.</span>
           </motion.h1>
           <motion.p variants={fadeUp} className="text-lg md:text-xl text-white/70 mb-12 max-w-2xl mx-auto font-light">
             An immersive dining and nightlife experience blending culinary excellence with electrifying ambiance.
           </motion.p>
           <motion.div variants={fadeUp} className="flex flex-col sm:flex-row items-center justify-center gap-6">
-            <Link 
-              href="/reservation" 
+            <Link
+              href="/reservation"
               className="w-full sm:w-auto px-10 py-4 bg-primary text-primary-foreground font-display tracking-widest uppercase hover:bg-white hover:text-black transition-all duration-300 box-glow-strong"
             >
               Reserve Table
             </Link>
-            <Link 
-              href="/menu" 
+            <Link
+              href="/menu"
               className="w-full sm:w-auto px-10 py-4 bg-white/5 border border-white/20 text-white font-display tracking-widest uppercase hover:bg-white/10 transition-all duration-300 backdrop-blur-sm"
             >
               View Menu
@@ -73,7 +73,7 @@ export default function Home() {
       {/* Highlights Section */}
       <section className="py-24 relative">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div 
+          <motion.div
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, margin: "-100px" }}
@@ -130,7 +130,7 @@ export default function Home() {
               </Link>
             ))}
           </div>
-          
+
           <div className="mt-10 md:hidden flex justify-center">
             <Link href="/menu" className="flex items-center gap-2 text-primary hover:text-white transition-colors tracking-widest uppercase text-sm">
               Explore Full Menu <ArrowRight size={16} />
@@ -146,7 +146,7 @@ export default function Home() {
             <h2 className="text-primary tracking-widest uppercase text-sm mb-3">The Atmosphere</h2>
             <h3 className="text-4xl md:text-5xl text-white font-display">A Glimpse Inside</h3>
           </div>
-          
+
           <div className="grid grid-cols-2 md:grid-cols-3 gap-4 auto-rows-[250px] overflow-hidden">
             <PlaceholderImage src={imgOpenDining} label="Dining Room" className="col-span-2 row-span-2" />
             <PlaceholderImage src={imgBarBig} label="Main Bar" />
@@ -154,7 +154,7 @@ export default function Home() {
             <PlaceholderImage src={imgBar3} label="Cocktail Detail" />
             <PlaceholderImage src={imgBarWhatsapp} label="Mixology in Action" className="col-span-2" />
           </div>
-          
+
           <div className="mt-12 text-center">
             <Link href="/gallery" className="inline-block px-8 py-4 border border-white/20 text-white font-display tracking-widest uppercase hover:bg-white hover:text-black transition-all duration-300">
               View Full Gallery
@@ -176,8 +176,8 @@ export default function Home() {
           <p className="text-xl text-white/70 font-light mb-12 max-w-2xl mx-auto">
             Secure your spot at the most exclusive venue in town. Reservations are highly recommended.
           </p>
-          <Link 
-            href="/reservation" 
+          <Link
+            href="/reservation"
             className="inline-block px-12 py-5 bg-primary text-primary-foreground font-display text-lg tracking-[0.2em] uppercase hover:bg-white hover:text-black transition-all duration-300 shadow-[0_0_40px_rgba(245,158,11,0.4)]"
           >
             Book Your Table

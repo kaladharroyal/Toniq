@@ -1,8 +1,8 @@
-# Tonique Workspace 🍸
+# TONIQE Workspace 🍸
 A premium, high-performance hospitality and nightlife monorepo built with React, Express, and MongoDB. This project uses a `pnpm` workspace architecture for efficient package management and a highly integrated admin ecosystem.
 
 🌟 **Overview**
-Tonique is a sophisticated restaurant and nightlife platform designed to provide an immersive dining experience. It features a cinematic customer-facing reservation system and a robust administrative dashboard for real-time table and booking management.
+TONIQE is a sophisticated restaurant and nightlife platform designed to provide an immersive dining experience. It features a cinematic customer-facing reservation system and a robust administrative dashboard for real-time table and booking management.
 
 ---
 
@@ -26,7 +26,7 @@ TONIQ/
 │
 ├── TONIQ/                   # Main Application Monorepo
 │   ├── artifacts/           
-│   │   ├── tonique/         # Customer Frontend (Main Site)
+│   │   ├── TONIQE/         # Customer Frontend (Main Site)
 │   │   └── api-server/      # Unified Express API Server & Static Host
 │   │
 │   ├── pnpm-workspace.yaml  # Workspace definition
@@ -87,4 +87,4 @@ pnpm run dev
 - **Type Safety**: Maintain strict TypeScript interfaces for all Reservation and Table data models.
 
 ---
-© 2025 Tonique Restaurant Group. All rights reserved.
+© 2025 TONIQE Restaurant Group. All rights reserved.

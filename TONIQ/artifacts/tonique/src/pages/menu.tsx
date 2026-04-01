@@ -244,7 +244,10 @@ export default function Menu() {
             {menuCategories.map((cat) => (
               <button
                 key={cat}
-                onClick={() => setActiveCategory(cat)}
+                onClick={() => {
+                  setActiveCategory(cat);
+                  window.scrollTo({ top: 0, behavior: "smooth" });
+                }}
                 className={cn(
                   "whitespace-nowrap font-display tracking-[0.15em] uppercase text-sm py-2 transition-all duration-300 border-b-2",
                   activeCategory === cat
@@ -264,10 +267,10 @@ export default function Menu() {
         <AnimatePresence mode="wait">
           <motion.div
             key={activeCategory}
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: -60 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
-            transition={{ duration: 0.4 }}
+            transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
           >
             {(activeCategory === "Soups" || activeCategory === "Appetizer" || activeCategory === "Main Course") ? (
               /* Veg / Non-Veg split layout */
