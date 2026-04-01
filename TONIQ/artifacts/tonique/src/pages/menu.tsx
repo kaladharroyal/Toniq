@@ -223,7 +223,7 @@ export default function Menu() {
   return (
     <div className="min-h-screen bg-background pt-16 pb-32">
       {/* Header */}
-      <div className="py-12 text-center relative border-b border-white/5 bg-zinc-950">
+      <div className="py-24 text-center relative border-b border-white/5 bg-zinc-950">
         <div className="absolute inset-0 flex justify-center items-center opacity-15 pointer-events-none overflow-hidden">
           <span className="text-[20vw] font-display font-bold whitespace-nowrap text-primary">MENU</span>
         </div>
