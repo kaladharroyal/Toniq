@@ -1,18 +1,47 @@
 import { PlaceholderImage } from "@/components/ui/placeholder-image";
 import { motion } from "framer-motion";
 
-const gallerySections = [
+import imgBarWhatsapp from "@/assets/gallery/bar_whatsapp.jpeg";
+import imgBarBig from "@/assets/gallery/bar.jpg";
+import imgBar1 from "@/assets/gallery/bar.jpeg";
+import imgBar3 from "@/assets/gallery/bar3.jpeg";
+import imgOpenDining from "@/assets/gallery/open dining.jpg";
+import imgSeating from "@/assets/gallery/seating.jpeg";
+import imgSofa from "@/assets/gallery/sofa.jpeg";
+import imgChandelierView from "@/assets/gallery/chandelier_view.png";
+
+type GallerySection = {
+  title: string;
+  images: { label: string; img?: string }[];
+};
+
+const gallerySections: GallerySection[] = [
   {
     title: "Dining Area",
-    images: ["Opulent Tables", "Chandelier View", "Intimate Booths", "Main Floor"]
+    images: [
+      { label: "Main Floor", img: imgOpenDining },
+      { label: "Opulent Tables", img: imgSeating },
+      { label: "Intimate Booths", img: imgSofa },
+      { label: "Chandelier View", img: imgChandelierView }
+    ]
   },
   {
     title: "The Bar",
-    images: ["Mixology in Action", "Liquor Shelf", "Bar Seating", "Cocktail Prep"]
+    images: [
+      { label: "Mixology in Action", img: imgBarWhatsapp },
+      { label: "Liquor Shelf", img: imgBarBig },
+      { label: "Bar Seating", img: imgBar1 },
+      { label: "Cocktail Prep", img: imgBar3 }
+    ]
   },
   {
     title: "Ambiance",
-    images: ["Live DJ", "Lighting Details", "Lounge Area", "Vibe"]
+    images: [
+      { label: "Live DJ" },
+      { label: "Lighting Details" },
+      { label: "Lounge Area" },
+      { label: "Vibe" }
+    ]
   }
 ];
 
@@ -39,7 +68,7 @@ export default function Gallery() {
               </div>
               
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                {section.images.map((label, imgIdx) => (
+                {section.images.map((item, imgIdx) => (
                   <motion.div 
                     key={imgIdx}
                     initial={{ opacity: 0, y: 20 }}
@@ -50,12 +79,13 @@ export default function Gallery() {
                   >
                     <div className="w-full h-full min-h-[300px] border border-white/5 overflow-hidden rounded-sm group relative">
                        <PlaceholderImage 
-                         label={label} 
+                         label={item.label}
+                         src={item.img}
                          className="w-full h-full transform group-hover:scale-105 transition-transform duration-700" 
                        />
                        {/* Glassmorphic overlay label on hover */}
                        <div className="absolute inset-x-0 bottom-0 p-6 translate-y-full group-hover:translate-y-0 transition-transform duration-500 bg-black/60 backdrop-blur-md border-t border-white/10">
-                          <p className="text-white font-display tracking-widest uppercase text-sm">{label}</p>
+                          <p className="text-white font-display tracking-widest uppercase text-sm">{item.label}</p>
                        </div>
                     </div>
                   </motion.div>

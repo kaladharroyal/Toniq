@@ -4,6 +4,17 @@ import { PlaceholderImage } from "@/components/ui/placeholder-image";
 import { ArrowRight, GlassWater, Music, Utensils } from "lucide-react";
 import Reviews from "@/components/ui/Reviews";
 import heroBg from "@/assets/hero-bg.png";
+import imgChicken555 from "@/assets/menu/Chicken 555.jpg";
+import imgRamboBiryani from "@/assets/menu/Rambo Biryani.jpg";
+import imgChickenManchowSoup from "@/assets/menu/Chicken Manchow Soup.jpg";
+import imgButterNaan from "@/assets/menu/Butter Naan.jpg";
+
+import imgBarBig from "@/assets/gallery/bar.jpg";
+import imgOpenDining from "@/assets/gallery/open dining.jpg";
+import imgSofa from "@/assets/gallery/sofa.jpeg";
+import imgBar3 from "@/assets/gallery/bar3.jpeg";
+import imgBarWhatsapp from "@/assets/gallery/bar_whatsapp.jpeg";
+import imgChandelierView from "@/assets/gallery/chandelier_view.png";
 
 const fadeUp: Variants = {
   hidden: { opacity: 0, y: 30 },
@@ -101,14 +112,14 @@ export default function Home() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {[
-              { name: "Chicken 555", desc: "Spicy deep-fried chicken with fiery seasoning", tag: "Appetizer" },
-              { name: "Rambo Biryani", desc: "Extra-loaded signature biryani with bold flavors", tag: "Main Course" },
-              { name: "Chicken Manchow Soup", desc: "Spiced chicken broth topped with crispy fried noodles", tag: "Soup" },
-              { name: "Gold Leaf Entremet", desc: "Dark chocolate mousse, hazelnut praline, 24k gold", tag: "Dessert" }
+              { name: "Chicken 555", desc: "Spicy deep-fried chicken with fiery seasoning", tag: "Appetizer", cat: "Appetizer", img: imgChicken555 },
+              { name: "Rambo Biryani", desc: "Extra-loaded signature biryani with bold flavors", tag: "Main Course", cat: "Main Course", img: imgRamboBiryani },
+              { name: "Chicken Manchow Soup", desc: "Spiced chicken broth topped with crispy fried noodles", tag: "Soup", cat: "Soups", img: imgChickenManchowSoup },
+              { name: "Butter Naan", desc: "Soft leavened bread slathered with rich butter", tag: "Breads", cat: "Breads", img: imgButterNaan }
             ].map((item, i) => (
-              <div key={i} className="group relative overflow-hidden bg-black border border-white/10 hover:border-primary/50 transition-colors duration-500">
-                <PlaceholderImage label={`Menu Item: ${item.name}`} aspectRatio="tall" className="w-full" />
-                <div className="absolute top-4 right-4 bg-black/60 backdrop-blur-md px-3 py-1 text-xs text-primary uppercase tracking-widest border border-white/10">
+              <Link href={`/menu#${item.cat}`} key={i} className="group relative overflow-hidden bg-black border border-white/10 hover:border-primary/50 transition-colors duration-500 block">
+                <PlaceholderImage label={`Menu Item: ${item.name}`} src={item.img} aspectRatio="tall" className="w-full" />
+                <div className="absolute top-4 right-4 bg-black/60 backdrop-blur-md px-3 py-1 text-xs text-primary uppercase tracking-widest border border-white/10 group-hover:bg-primary/20 transition-colors">
                   {item.tag}
                 </div>
                 <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent opacity-80" />
@@ -116,7 +127,7 @@ export default function Home() {
                   <h4 className="text-xl text-white font-display tracking-wide mb-2">{item.name}</h4>
                   <p className="text-white/60 text-sm opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100">{item.desc}</p>
                 </div>
-              </div>
+              </Link>
             ))}
           </div>
           
@@ -136,12 +147,12 @@ export default function Home() {
             <h3 className="text-4xl md:text-5xl text-white font-display">A Glimpse Inside</h3>
           </div>
           
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-4 auto-rows-[250px]">
-            <PlaceholderImage label="Main Bar" className="col-span-2 row-span-2" />
-            <PlaceholderImage label="Dining Room" />
-            <PlaceholderImage label="VIP Lounge" />
-            <PlaceholderImage label="Cocktail Detail" />
-            <PlaceholderImage label="Chef Preparing" className="col-span-2" />
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-4 auto-rows-[250px] overflow-hidden">
+            <PlaceholderImage src={imgOpenDining} label="Dining Room" className="col-span-2 row-span-2" />
+            <PlaceholderImage src={imgBarBig} label="Main Bar" />
+            <PlaceholderImage src={imgSofa} label="VIP Lounge" />
+            <PlaceholderImage src={imgBar3} label="Cocktail Detail" />
+            <PlaceholderImage src={imgBarWhatsapp} label="Mixology in Action" className="col-span-2" />
           </div>
           
           <div className="mt-12 text-center">
@@ -158,7 +169,7 @@ export default function Home() {
       {/* CTA Section */}
       <section className="py-32 relative">
         <div className="absolute inset-0 z-0 opacity-40">
-          <PlaceholderImage label="Dark Moody Texture" hideLabel className="w-full h-full object-cover" />
+          <PlaceholderImage src={imgChandelierView} label="Dark Moody Texture" hideLabel className="w-full h-full object-cover" />
         </div>
         <div className="relative z-10 max-w-4xl mx-auto px-4 text-center">
           <h2 className="text-5xl md:text-7xl text-white font-display mb-8">Join The Night</h2>
