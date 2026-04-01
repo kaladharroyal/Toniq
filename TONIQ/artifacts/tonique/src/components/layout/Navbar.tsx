@@ -35,8 +35,8 @@ export function Navbar() {
       <header
         className={cn(
           "fixed top-0 left-0 right-0 z-50 transition-all duration-500 border-b border-transparent",
-          isScrolled 
-            ? "bg-black/80 backdrop-blur-md border-white/10 py-4" 
+          isScrolled
+            ? "bg-black/80 backdrop-blur-md border-white/10 py-4"
             : "bg-transparent py-6"
         )}
       >
@@ -45,7 +45,7 @@ export function Navbar() {
             {/* Logo */}
             <Link href="/" className="group flex items-center gap-2 outline-none">
               <span className="font-display text-2xl md:text-3xl font-bold tracking-[0.2em] text-white group-hover:text-primary transition-colors duration-300">
-                TONIQUE
+                TONIQE
               </span>
             </Link>
 

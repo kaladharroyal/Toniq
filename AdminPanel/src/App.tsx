@@ -198,7 +198,7 @@ function App() {
         <div className="login-card">
           <div className="login-header">
             <div className="login-logo">T</div>
-            <h1>Tonique Admin</h1>
+            <h1>TONIQE Admin</h1>
             <p>Please enter your credentials to continue</p>
           </div>
           <form onSubmit={handleLogin} className="login-form">
@@ -228,7 +228,7 @@ function App() {
             </button>
           </form>
           <div className="login-footer">
-            <p>&copy; 2025 Tonique Restaurant &bull; Secure Access</p>
+            <p>&copy; 2025 TONIQE Restaurant &bull; Secure Access</p>
           </div>
         </div>
       </div>
@@ -240,7 +240,7 @@ function App() {
       <header className="admin-header">
         <div className="header-top">
           <div>
-            <h1>Tonique Admin Panel</h1>
+            <h1>TONIQE Admin Panel</h1>
             <p>Live Reservation Dashboard</p>
           </div>
           <button className="logout-btn" onClick={handleLogout}>
@@ -554,19 +554,17 @@ function App() {
                       return (
                         <div
                           key={t._id}
-                          className={`table-card ${
-                            t.status === "maintenance" ? "table-maintenance" :
-                            t.status === "unavailable" ? "table-unavailable" :
-                            activeBooking ? "table-occupied" : "table-free"
-                          }`}
+                          className={`table-card ${t.status === "maintenance" ? "table-maintenance" :
+                              t.status === "unavailable" ? "table-unavailable" :
+                                activeBooking ? "table-occupied" : "table-free"
+                            }`}
                         >
                           <div className="table-card-header">
                             <span className="table-card-number">Table {t.tableNumber}</span>
-                            <span className={`table-dot ${
-                              t.status === "maintenance" ? "dot-maintenance" :
-                              t.status === "unavailable" ? "dot-unavailable" :
-                              activeBooking ? "dot-occupied" : "dot-free"
-                            }`} />
+                            <span className={`table-dot ${t.status === "maintenance" ? "dot-maintenance" :
+                                t.status === "unavailable" ? "dot-unavailable" :
+                                  activeBooking ? "dot-occupied" : "dot-free"
+                              }`} />
                           </div>
                           <div className="table-card-body">
                             <p className="table-card-capacity">{t.capacity} seats &middot; {t.section.charAt(0).toUpperCase() + t.section.slice(1)}</p>

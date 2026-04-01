@@ -3,7 +3,7 @@ import { PlaceholderImage } from "@/components/ui/placeholder-image";
 export default function About() {
   return (
     <div className="min-h-screen bg-background pt-32 pb-24">
-      
+
       {/* Story Section */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-32">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
@@ -12,13 +12,13 @@ export default function About() {
             <h1 className="text-5xl md:text-7xl text-white font-display mb-8">More Than A Venue</h1>
             <div className="space-y-6 text-white/60 font-light leading-relaxed">
               <p>
-                Founded in 2023, Tonique emerged from a desire to bridge the gap between high-end culinary experiences and electrifying nightlife. We believe that an evening out shouldn't require compromising on food quality or settling for a mediocre atmosphere.
+                Founded in 2023, TONIQE emerged from a desire to bridge the gap between high-end culinary experiences and electrifying nightlife. We believe that an evening out shouldn't require compromising on food quality or settling for a mediocre atmosphere.
               </p>
               <p>
                 Our founders, veterans of the luxury hospitality industry, envisioned a space where every detail—from the bespoke lighting design to the hand-cut ice in your glass—is curated to perfection.
               </p>
               <p>
-                Tonique isn't just a restaurant or a bar. It's a sanctuary for the modern connoisseur. A place where conversations flow over world-class dining, and nights escalate seamlessly into unforgettable celebrations.
+                TONIQE isn't just a restaurant or a bar. It's a sanctuary for the modern connoisseur. A place where conversations flow over world-class dining, and nights escalate seamlessly into unforgettable celebrations.
               </p>
             </div>
           </div>
