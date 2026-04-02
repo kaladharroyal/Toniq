@@ -37,10 +37,10 @@ const gallerySections: GallerySection[] = [
   {
     title: "Ambiance",
     images: [
-      { label: "Live DJ" },
-      { label: "Lighting Details" },
-      { label: "Lounge Area" },
-      { label: "Vibe" }
+      { label: "Lighting Details", img: imgChandelierView },
+      { label: "Lounge Area", img: imgSofa },
+      { label: "Vibe", img: imgBar3 },
+      { label: "Live DJ", img: imgBarWhatsapp }
     ]
   }
 ];

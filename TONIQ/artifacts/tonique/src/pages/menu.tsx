@@ -223,7 +223,7 @@ export default function Menu() {
   return (
     <div className="min-h-screen bg-background pt-16 pb-32">
       {/* Header */}
-      <div className="py-24 text-center relative border-b border-white/5 bg-zinc-950">
+      <div className="py-14 text-center relative border-b border-white/5 bg-zinc-950">
         <div className="absolute inset-0 flex justify-center items-center opacity-15 pointer-events-none overflow-hidden">
           <span className="text-[20vw] font-display font-bold whitespace-nowrap text-primary">MENU</span>
         </div>
@@ -238,7 +238,7 @@ export default function Menu() {
       </div>
 
       {/* Category Tabs */}
-      <div className="sticky top-[80px] z-30 bg-background/80 backdrop-blur-lg border-b border-white/10 py-4 mb-16">
+      <div className="sticky top-16 z-30 bg-background/80 backdrop-blur-lg border-b border-white/10 py-4 mb-8">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex overflow-x-auto hide-scrollbar gap-8 justify-start md:justify-center">
             {menuCategories.map((cat) => (
