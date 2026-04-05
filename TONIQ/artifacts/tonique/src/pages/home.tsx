@@ -54,12 +54,12 @@ export default function Home() {
             An immersive dining and nightlife experience blending culinary excellence with electrifying ambiance.
           </motion.p>
           <motion.div variants={fadeUp} className="flex flex-col sm:flex-row items-center justify-center gap-6">
-            <Link
+            {/* <Link
               href="/reservation"
               className="w-full sm:w-auto px-10 py-4 bg-primary text-primary-foreground font-display tracking-widest uppercase hover:bg-white hover:text-black transition-all duration-300 box-glow-strong"
             >
               Reserve Table
-            </Link>
+            </Link> */}
             <Link
               href="/menu"
               className="w-full sm:w-auto px-10 py-4 bg-white/5 border border-white/20 text-white font-display tracking-widest uppercase hover:bg-white/10 transition-all duration-300 backdrop-blur-sm"
@@ -167,7 +167,7 @@ export default function Home() {
       <Reviews />
 
       {/* CTA Section */}
-      <section className="py-32 relative">
+      {/* <section className="py-32 relative">
         <div className="absolute inset-0 z-0 opacity-40">
           <PlaceholderImage src={imgChandelierView} label="Dark Moody Texture" hideLabel className="w-full h-full object-cover" />
         </div>
@@ -183,7 +183,7 @@ export default function Home() {
             Book Your Table
           </Link>
         </div>
-      </section>
+      </section> */}
     </div>
   );
 }

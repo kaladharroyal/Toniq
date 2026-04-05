@@ -12,7 +12,7 @@ import { Footer } from "@/components/layout/Footer";
 import Home from "@/pages/home";
 import Menu from "@/pages/menu";
 import Gallery from "@/pages/gallery";
-import Reservation from "@/pages/reservation";
+// import Reservation from "@/pages/reservation";
 import About from "@/pages/about";
 import Contact from "@/pages/contact";
 import NotFound from "@/pages/not-found";
@@ -37,7 +37,7 @@ function Router() {
           <Route path="/" component={Home} />
           <Route path="/menu" component={Menu} />
           <Route path="/gallery" component={Gallery} />
-          <Route path="/reservation" component={Reservation} />
+          {/* <Route path="/reservation" component={Reservation} /> */}
           <Route path="/about" component={About} />
           <Route path="/contact" component={Contact} />
           <Route component={NotFound} />
@@ -47,6 +47,7 @@ function Router() {
     </div>
   );
 }
+
 
 function App() {
   return (
