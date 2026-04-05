@@ -66,12 +66,12 @@ export function Navbar() {
                   </Link>
                 );
               })}
-              <Link
+              {/* <Link
                 href="/reservation"
                 className="ml-4 px-6 py-2.5 bg-primary/10 border border-primary/50 text-primary hover:bg-primary hover:text-primary-foreground font-display tracking-widest uppercase text-sm transition-all duration-300 box-glow"
               >
                 Reserve
-              </Link>
+              </Link> */}
             </nav>
 
             {/* Mobile Menu Toggle */}
@@ -113,12 +113,12 @@ export function Navbar() {
                 );
               })}
               <div className="w-12 h-px bg-white/20 my-4" />
-              <Link
+              {/* <Link
                 href="/reservation"
                 className="px-8 py-4 bg-primary text-primary-foreground font-display tracking-widest uppercase text-lg w-full max-w-xs text-center"
               >
                 Book a Table
-              </Link>
+              </Link> */}
             </nav>
           </motion.div>
         )}

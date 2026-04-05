@@ -48,7 +48,7 @@ export function Footer() {
             <h4 className="font-display text-lg tracking-widest text-white mb-6 uppercase">Explore</h4>
             <nav className="flex flex-col gap-4 text-center md:text-left">
               <Link href="/menu" className="text-white/60 hover:text-primary transition-colors">Our Menu</Link>
-              <Link href="/reservation" className="text-white/60 hover:text-primary transition-colors">Reservations</Link>
+              {/* <Link href="/reservation" className="text-white/60 hover:text-primary transition-colors">Reservations</Link> */}
               <Link href="/gallery" className="text-white/60 hover:text-primary transition-colors">Gallery</Link>
               <Link href="/about" className="text-white/60 hover:text-primary transition-colors">Our Story</Link>
             </nav>
