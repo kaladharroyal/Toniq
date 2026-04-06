@@ -112,6 +112,57 @@
     box-shadow: 0 0 30px hsl(var(--primary) / 0.3);
   }
 
+  /* ── Mobile menu cards ──────────────────────────────────────────────── */
+  .hide-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .hide-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  .menu-scrollbar {
+    scrollbar-width: thin;
+    scrollbar-color: hsl(var(--primary) / 0.5) transparent;
+  }
+  .menu-scrollbar::-webkit-scrollbar {
+    height: 3px;
+  }
+  .menu-scrollbar::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  .menu-scrollbar::-webkit-scrollbar-thumb {
+    background: hsl(var(--primary) / 0.5);
+    border-radius: 4px;
+  }
+
+  .mobile-card {
+    background: hsl(var(--card));
+    border: 1px solid hsl(var(--border));
+    border-radius: 6px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    /* smooth transform for tap feedback */
+    transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
+    will-change: transform;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  /* Active (tapped) state — touch-only hover effect */
+  .mobile-card--active {
+    transform: scale(0.96);
+    border-color: hsl(var(--primary) / 0.6);
+    box-shadow: 0 0 18px hsl(var(--primary) / 0.35), 0 0 6px hsl(var(--primary) / 0.2);
+  }
+
+  /* Last card spans full row when orphaned (odd number of items) */
+  .mobile-grid > .mobile-card:last-child:nth-child(odd) {
+    grid-column: 1 / -1;
+    max-width: calc(50% - 6px);
+  }
+
   /* Custom Scrollbar */
   ::-webkit-scrollbar {
     width: 8px;

@@ -1,5 +1,6 @@
+import { useState, useEffect, useRef, Children } from "react";
 import { Link } from "wouter";
-import { motion, Variants } from "framer-motion";
+import { motion, Variants, AnimatePresence } from "framer-motion";
 import { PlaceholderImage } from "@/components/ui/placeholder-image";
 import { ArrowRight, GlassWater, Music, Utensils } from "lucide-react";
 import Reviews from "@/components/ui/Reviews";
@@ -26,11 +27,130 @@ const staggerContainer: Variants = {
   visible: { opacity: 1, transition: { staggerChildren: 0.2 } }
 };
 
+function MobileAutoSlider({ children, desktopClass }: { children: React.ReactNode, desktopClass: string }) {
+  const childArray = Children.toArray(children);
+  const [active, setActive] = useState(0);
+  const [isMobile, setIsMobile] = useState(false);
+  const touchStart = useRef<number | null>(null);
+
+  useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth < 768);
+    handleResize(); 
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  useEffect(() => {
+    if (!isMobile) return;
+    const timer = setInterval(() => {
+      setActive((prev) => (prev + 1) % childArray.length);
+    }, 2500);
+    return () => clearInterval(timer);
+  }, [isMobile, childArray.length]);
+
+  if (!isMobile) {
+    return <div className={desktopClass}>{children}</div>;
+  }
+
+  const handleTouchStart = (e: React.TouchEvent) => {
+    touchStart.current = e.touches[0].clientX;
+  };
+
+  const handleTouchEnd = (e: React.TouchEvent) => {
+    if (touchStart.current === null) return;
+    const touchEnd = e.changedTouches[0].clientX;
+    const delta = touchEnd - touchStart.current;
+
+    // Minimum swipe distance
+    if (delta < -30) {
+      setActive((prev) => (prev + 1) % childArray.length);
+    } else if (delta > 30) {
+      setActive((prev) => (prev - 1 + childArray.length) % childArray.length);
+    }
+    touchStart.current = null;
+  };
+
+  return (
+    <div 
+      className="relative w-full py-4 flex flex-col items-center justify-center overflow-hidden touch-pan-y"
+      onTouchStart={handleTouchStart}
+      onTouchEnd={handleTouchEnd}
+    >
+      <div className="relative w-full h-[400px] flex justify-center items-center perspective-[1000px]">
+        <AnimatePresence mode="popLayout">
+          {[-1, 0, 1].map((slotOffset) => {
+            // Find the true child index
+            const index = (active + slotOffset + childArray.length) % childArray.length;
+            const child = childArray[index];
+            const isCenter = slotOffset === 0;
+
+            const x = slotOffset * 65; 
+            const rotateY = slotOffset * -35; 
+            const scale = isCenter ? 1 : 0.85; 
+            const zIndex = isCenter ? 10 : 8; 
+            
+            return (
+              <motion.div
+                key={index}
+                layout
+                initial={{ 
+                  opacity: 0, 
+                  x: `${slotOffset > 0 ? 130 : -130}%`, 
+                  scale: 0.7 
+                }}
+                animate={{
+                  opacity: 1,
+                  x: `${x}%`,
+                  rotateY: rotateY,
+                  scale: scale,
+                  zIndex: zIndex,
+                  filter: isCenter ? "brightness(1) blur(0px)" : "brightness(0.35) blur(1.5px)",
+                }}
+                exit={{ 
+                  opacity: 0, 
+                  x: `${slotOffset > 0 ? 130 : -130}%`, 
+                  scale: 0.7,
+                  zIndex: 0
+                }}
+                transition={{ duration: 0.5, ease: "easeOut" }}
+                className="absolute w-[68%] sm:w-[50%] h-[360px] shadow-2xl rounded-xl cursor-pointer"
+                onClick={() => {
+                  if (!isCenter) setActive(index);
+                }}
+              >
+                <div 
+                  className="w-full h-full rounded-xl overflow-hidden" 
+                  style={{ pointerEvents: isCenter ? "auto" : "none" }}
+                >
+                  {child}
+                </div>
+              </motion.div>
+            );
+          })}
+        </AnimatePresence>
+      </div>
+      
+      {/* Dynamic Dot Indicators */}
+      <div className="flex gap-2 mt-6">
+        {childArray.map((_, i) => (
+          <button
+            key={i}
+            onClick={() => setActive(i)}
+            className={`h-1.5 rounded-full transition-all duration-300 ${
+              i === active ? "w-6 bg-primary" : "w-1.5 bg-white/20 hover:bg-white/40"
+            }`}
+          />
+        ))}
+      </div>
+    </div>
+  );
+}
+
 export default function Home() {
   return (
     <div className="min-h-screen bg-background">
       {/* Hero Section */}
-      <section className="relative h-screen flex items-center justify-center overflow-hidden">
+      <section className="relative min-h-[85vh] md:h-screen flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0 z-0">
           <img src={heroBg} alt="" className="w-full h-full object-cover" />
           <div className="absolute inset-0 bg-black/60 z-10" />
@@ -71,34 +191,35 @@ export default function Home() {
       </section>
 
       {/* Highlights Section */}
-      <section className="py-24 relative">
+      <section className="pt-4 pb-20 md:py-24 -mt-16 md:mt-0 relative overflow-hidden z-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, margin: "-100px" }}
             variants={staggerContainer}
-            className="grid grid-cols-1 md:grid-cols-3 gap-12"
           >
-            {[
-              { icon: GlassWater, title: "Master Mixology", desc: "Award-winning bartenders crafting signature libations with premium spirits." },
-              { icon: Utensils, title: "Culinary Art", desc: "A modern fusion menu designed to delight the palate and complement your drinks." },
-              { icon: Music, title: "Electric Vibe", desc: "Curated soundtracks and live DJs setting the perfect tone for your evening." }
-            ].map((feature, i) => (
-              <motion.div key={i} variants={fadeUp} className="glass-panel p-10 text-center flex flex-col items-center group hover:-translate-y-2 transition-transform duration-500">
-                <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mb-6 group-hover:scale-110 group-hover:bg-primary/20 transition-all duration-500">
-                  <feature.icon className="w-8 h-8 text-primary" strokeWidth={1.5} />
-                </div>
-                <h3 className="text-xl text-white font-display tracking-widest uppercase mb-4">{feature.title}</h3>
-                <p className="text-white/60 leading-relaxed">{feature.desc}</p>
-              </motion.div>
-            ))}
+            <MobileAutoSlider desktopClass="md:grid md:grid-cols-3 md:gap-12 md:flex-none">
+              {[
+                { icon: GlassWater, title: "Master Mixology", desc: "Award-winning bartenders crafting signature libations with premium spirits." },
+                { icon: Utensils, title: "Culinary Art", desc: "A modern fusion menu designed to delight the palate and complement your drinks." },
+                { icon: Music, title: "Electric Vibe", desc: "Curated soundtracks and live DJs setting the perfect tone for your evening." }
+              ].map((feature, i) => (
+                <motion.div key={i} variants={fadeUp} className="glass-panel p-10 text-center flex flex-col items-center group h-full md:hover:-translate-y-2 transition-transform duration-500">
+                  <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mb-6 group-hover:scale-110 group-hover:bg-primary/20 transition-all duration-500">
+                    <feature.icon className="w-8 h-8 text-primary" strokeWidth={1.5} />
+                  </div>
+                  <h3 className="text-xl text-white font-display tracking-widest uppercase mb-4">{feature.title}</h3>
+                  <p className="text-white/60 leading-relaxed">{feature.desc}</p>
+                </motion.div>
+              ))}
+            </MobileAutoSlider>
           </motion.div>
         </div>
       </section>
 
       {/* Featured Menu */}
-      <section className="py-24 bg-zinc-950 border-y border-white/5">
+      <section className="py-24 bg-zinc-950 border-y border-white/5 overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col md:flex-row justify-between items-end mb-16">
             <div>
@@ -110,26 +231,26 @@ export default function Home() {
             </Link>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <MobileAutoSlider desktopClass="md:grid md:grid-cols-2 lg:grid-cols-4 md:gap-6 md:flex-none max-w-full">
             {[
               { name: "Chicken 555", desc: "Spicy deep-fried chicken with fiery seasoning", tag: "Appetizer", cat: "Appetizer", img: imgChicken555 },
               { name: "Rambo Biryani", desc: "Extra-loaded signature biryani with bold flavors", tag: "Main Course", cat: "Main Course", img: imgRamboBiryani },
               { name: "Chicken Manchow Soup", desc: "Spiced chicken broth topped with crispy fried noodles", tag: "Soup", cat: "Soups", img: imgChickenManchowSoup },
               { name: "Butter Naan", desc: "Soft leavened bread slathered with rich butter", tag: "Breads", cat: "Breads", img: imgButterNaan }
             ].map((item, i) => (
-              <Link href={`/menu#${item.cat}`} key={i} className="group relative overflow-hidden bg-black border border-white/10 hover:border-primary/50 transition-colors duration-500 block">
+              <Link href={`/menu#${item.cat}`} key={i} className="group relative overflow-hidden bg-black border border-white/10 hover:border-primary/50 transition-colors duration-500 block w-full h-full">
                 <PlaceholderImage label={`Menu Item: ${item.name}`} src={item.img} aspectRatio="tall" className="w-full" />
                 <div className="absolute top-4 right-4 bg-black/60 backdrop-blur-md px-3 py-1 text-xs text-primary uppercase tracking-widest border border-white/10 group-hover:bg-primary/20 transition-colors">
                   {item.tag}
                 </div>
                 <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent opacity-80" />
-                <div className="absolute bottom-0 left-0 p-6 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
+                <div className="absolute bottom-0 left-0 p-6 transform md:translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
                   <h4 className="text-xl text-white font-display tracking-wide mb-2">{item.name}</h4>
-                  <p className="text-white/60 text-sm opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100">{item.desc}</p>
+                  <p className="text-white/60 text-sm md:opacity-0 group-hover:opacity-100 transition-opacity duration-500 md:delay-100">{item.desc}</p>
                 </div>
               </Link>
             ))}
-          </div>
+          </MobileAutoSlider>
 
           <div className="mt-10 md:hidden flex justify-center">
             <Link href="/menu" className="flex items-center gap-2 text-primary hover:text-white transition-colors tracking-widest uppercase text-sm">
@@ -147,12 +268,12 @@ export default function Home() {
             <h3 className="text-4xl md:text-5xl text-white font-display">A Glimpse Inside</h3>
           </div>
 
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-4 auto-rows-[250px] overflow-hidden">
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-2 md:gap-4 auto-rows-[160px] sm:auto-rows-[200px] md:auto-rows-[250px] overflow-hidden">
             <PlaceholderImage src={imgOpenDining} label="Dining Room" className="col-span-2 row-span-2" />
             <PlaceholderImage src={imgBarBig} label="Main Bar" />
             <PlaceholderImage src={imgSofa} label="VIP Lounge" />
             <PlaceholderImage src={imgBar3} label="Cocktail Detail" />
-            <PlaceholderImage src={imgBarWhatsapp} label="Mixology in Action" className="col-span-2" />
+            <PlaceholderImage src={imgBarWhatsapp} label="Mixology in Action" className="col-span-1 md:col-span-2" />
           </div>
 
           <div className="mt-12 text-center">

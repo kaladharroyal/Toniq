@@ -45,66 +45,66 @@ export default function Contact() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-20">
 
           {/* Info Cards */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="grid grid-cols-2 gap-3 sm:gap-4 md:gap-6">
             <div
               id="contact-card-location"
               onClick={handleLocationClick}
-              className="glass-panel p-8 text-center md:text-left flex flex-col items-center md:items-start"
+              className="glass-panel p-4 sm:p-6 md:p-8 text-center md:text-left flex flex-col items-center md:items-start"
               style={{ cursor: 'pointer' }}
               role="button"
               tabIndex={0}
               aria-label="Open TONIQE location in Google Maps"
               onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') handleLocationClick(); }}
             >
-              <MapPin className="w-8 h-8 text-primary mb-4" />
-              <h3 className="text-xl text-white font-display mb-2">Location</h3>
-              <p className="text-white/60 font-light">8CJ9+2G5, JKC College Rd<br />Bapaiaha Nagar, Guntur, AP 522006</p>
+              <MapPin className="w-6 h-6 sm:w-8 sm:h-8 text-primary mb-3 md:mb-4" />
+              <h3 className="text-base sm:text-lg md:text-xl text-white font-display mb-1 md:mb-2">Location</h3>
+              <p className="text-white/60 font-light text-[10px] sm:text-xs md:text-base leading-relaxed">8CJ9+2G5, JKC College Rd<br />Bapaiaha Nagar, Guntur, AP</p>
             </div>
 
             <div
               id="contact-card-phone"
               onClick={handlePhoneClick}
-              className="glass-panel p-8 text-center md:text-left flex flex-col items-center md:items-start"
+              className="glass-panel p-4 sm:p-6 md:p-8 text-center md:text-left flex flex-col items-center md:items-start"
               style={{ cursor: 'pointer' }}
               role="button"
               tabIndex={0}
               aria-label="Call TONIQE at +91 99897 77077"
               onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') handlePhoneClick(); }}
             >
-              <Phone className="w-8 h-8 text-primary mb-4" />
-              <h3 className="text-xl text-white font-display mb-2">Phone</h3>
-              <p className="text-white/60 font-light">+91 99897 77077<br />Available daily 10AM – 11PM</p>
+              <Phone className="w-6 h-6 sm:w-8 sm:h-8 text-primary mb-3 md:mb-4" />
+              <h3 className="text-base sm:text-lg md:text-xl text-white font-display mb-1 md:mb-2">Phone</h3>
+              <p className="text-white/60 font-light text-[10px] sm:text-xs md:text-base leading-relaxed">+91 99897 77077<br />Available daily 10AM – 11PM</p>
             </div>
 
             <div
               id="contact-card-email"
               onClick={handleEmailClick}
-              className="glass-panel p-8 text-center md:text-left flex flex-col items-center md:items-start"
+              className="glass-panel p-4 sm:p-6 md:p-8 text-center md:text-left flex flex-col items-center md:items-start"
               style={{ cursor: 'pointer' }}
               role="button"
               tabIndex={0}
               aria-label="Send an email to TONIQE at info@TONIQE.com"
               onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') handleEmailClick(); }}
             >
-              <Mail className="w-8 h-8 text-primary mb-4" />
-              <h3 className="text-xl text-white font-display mb-2">Email</h3>
-              <p className="text-white/60 font-light">info@TONIQE.com<br />events@TONIQE.com</p>
+              <Mail className="w-6 h-6 sm:w-8 sm:h-8 text-primary mb-3 md:mb-4" />
+              <h3 className="text-base sm:text-lg md:text-xl text-white font-display mb-1 md:mb-2">Email</h3>
+              <p className="text-white/60 font-light text-xs sm:text-sm md:text-base leading-relaxed break-all">info@TONIQE.com<br />events@TONIQE.com</p>
             </div>
 
             <div
               id="contact-card-hours"
-              className="glass-panel p-8 text-center md:text-left flex flex-col items-center md:items-start"
+              className="glass-panel p-4 sm:p-6 md:p-8 text-center md:text-left flex flex-col items-center md:items-start justify-center"
               aria-label={`TONIQE hours – ${isOpen === null ? 'loading' : isOpen ? 'Open Now' : 'Closed'}`}
             >
-              <Clock className="w-8 h-8 text-primary mb-4" />
-              <h3 className="text-xl text-white font-display mb-2">
+              <Clock className="w-6 h-6 sm:w-8 sm:h-8 text-primary mb-3 md:mb-4" />
+              <h3 className="text-base sm:text-lg md:text-xl text-white font-display mb-1 md:mb-2 flex flex-col sm:flex-row items-center sm:gap-2">
                 Hours{isOpen !== null && (
-                  <span aria-live="polite" style={{ marginLeft: '0.5rem' }}>
+                  <span aria-live="polite" className="text-[10px] sm:text-sm tracking-widest uppercase mt-1 sm:mt-0 font-sans font-semibold">
                     {isOpen ? '🟢 Open Now' : '🔴 Closed'}
                   </span>
                 )}
               </h3>
-              <p className="text-white/60 font-light">Open daily<br />10:00 AM – 11:00 PM</p>
+              <p className="text-white/60 font-light text-xs sm:text-sm md:text-base leading-relaxed">Open daily<br />10AM – 11PM</p>
             </div>
           </div>
 

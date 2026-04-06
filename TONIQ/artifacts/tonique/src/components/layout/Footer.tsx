@@ -5,10 +5,10 @@ export function Footer() {
   return (
     <footer className="bg-black border-t border-white/10 pt-20 pb-10">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-y-12 gap-x-4 mb-16">
 
           {/* Brand */}
-          <div className="md:col-span-1 flex flex-col items-center md:items-start text-center md:text-left">
+          <div className="col-span-2 md:col-span-1 flex flex-col items-center md:items-start text-center md:text-left">
             <span className="font-display text-3xl font-bold tracking-[0.2em] text-white mb-6">
               TONIQE
             </span>
@@ -44,32 +44,42 @@ export function Footer() {
           </div>
 
           {/* Links */}
-          <div className="flex flex-col items-center md:items-start">
+          <div className="col-span-1 flex flex-col items-center md:items-start text-center md:text-left">
             <h4 className="font-display text-lg tracking-widest text-white mb-6 uppercase">Explore</h4>
             <nav className="flex flex-col gap-4 text-center md:text-left">
-              <Link href="/menu" className="text-white/60 hover:text-primary transition-colors">Our Menu</Link>
-              {/* <Link href="/reservation" className="text-white/60 hover:text-primary transition-colors">Reservations</Link> */}
-              <Link href="/gallery" className="text-white/60 hover:text-primary transition-colors">Gallery</Link>
-              <Link href="/about" className="text-white/60 hover:text-primary transition-colors">Our Story</Link>
+              <Link href="/menu" className="text-white/60 hover:text-primary transition-colors text-sm sm:text-base">Our Menu</Link>
+              <Link href="/gallery" className="text-white/60 hover:text-primary transition-colors text-sm sm:text-base">Gallery</Link>
+              <Link href="/about" className="text-white/60 hover:text-primary transition-colors text-sm sm:text-base">Our Story</Link>
             </nav>
           </div>
 
+          {/* Hours */}
+          <div className="col-span-1 flex flex-col items-center md:items-start text-center md:text-left">
+            <h4 className="font-display text-lg tracking-widest text-white mb-6 uppercase">Hours</h4>
+            <ul className="text-white/60 space-y-2 text-sm sm:text-base">
+              <li className="flex flex-col md:flex-row justify-between w-full items-center md:items-start gap-1 md:gap-4 md:max-w-[200px]">
+                <span>Daily</span>
+                <span className="text-primary text-xs sm:text-sm font-semibold">10AM – 11PM</span>
+              </li>
+            </ul>
+          </div>
+
           {/* Contact Info */}
-          <div className="flex flex-col items-center md:items-start">
+          <div className="col-span-2 md:col-span-1 flex flex-col items-center md:items-start text-center md:text-left">
             <h4 className="font-display text-lg tracking-widest text-white mb-6 uppercase">Contact</h4>
-            <div className="flex flex-col gap-4 text-center md:text-left">
+            <div className="flex flex-col gap-4 text-center md:text-left text-sm sm:text-base">
               <a
                 href="https://www.google.com/maps/search/?api=1&query=TONIQE+Restaurant+and+Bar+Guntur"
                 target="_blank" rel="noopener noreferrer"
-                className="text-white/60 flex items-center justify-center md:justify-start gap-3 hover:text-primary transition-colors"
+                className="text-white/60 flex flex-col md:flex-row items-center justify-center md:justify-start gap-2 md:gap-3 hover:text-primary transition-colors"
                 aria-label="Open location in Google Maps"
               >
                 <MapPin size={18} className="text-primary flex-shrink-0" />
-                8CJ9+2G5, JKC College Rd, Guntur
+                <span>8CJ9+2G5, JKC College Rd<br className="md:hidden" /> Guntur</span>
               </a>
               <a
                 href="tel:+919989777077"
-                className="text-white/60 flex items-center justify-center md:justify-start gap-3 hover:text-primary transition-colors"
+                className="text-white/60 flex flex-col md:flex-row items-center justify-center md:justify-start gap-2 md:gap-3 hover:text-primary transition-colors"
                 aria-label="Call TONIQE"
               >
                 <Phone size={18} className="text-primary flex-shrink-0" />
@@ -77,7 +87,7 @@ export function Footer() {
               </a>
               <a
                 href="mailto:info@TONIQE.com"
-                className="text-white/60 flex items-center justify-center md:justify-start gap-3 hover:text-primary transition-colors"
+                className="text-white/60 flex flex-col md:flex-row items-center justify-center md:justify-start gap-2 md:gap-3 hover:text-primary transition-colors"
                 aria-label="Email TONIQE"
               >
                 <Mail size={18} className="text-primary flex-shrink-0" />
@@ -86,19 +96,9 @@ export function Footer() {
             </div>
           </div>
 
-          {/* Hours */}
-          <div className="flex flex-col items-center md:items-start text-center md:text-left">
-            <h4 className="font-display text-lg tracking-widest text-white mb-6 uppercase">Hours</h4>
-            <ul className="text-white/60 space-y-2">
-              <li className="flex justify-between w-full max-w-[200px]">
-                <span>Daily</span>
-                <span className="text-primary">10AM – 11PM</span>
-              </li>
-            </ul>
-          </div>
         </div>
 
-        <div className="pt-8 border-t border-white/10 flex flex-col md:flex-row items-center justify-between gap-4">
+        <div className="pt-8 border-t border-white/10 flex flex-col-reverse md:flex-row items-center justify-between gap-6">
           <p className="text-white/40 text-sm">
             © {new Date().getFullYear()} TONIQE Restaurant & Bar. All rights reserved.
           </p>

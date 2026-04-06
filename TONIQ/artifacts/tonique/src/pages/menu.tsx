@@ -3,6 +3,20 @@ import { motion, AnimatePresence } from "framer-motion";
 import { PlaceholderImage } from "@/components/ui/placeholder-image";
 import { cn } from "@/lib/utils";
 
+// ── Mobile card with touch-tap active effect ──────────────────────────────
+function MobileCard({ item, children }: { item: MenuItem; children: React.ReactNode }) {
+  const [tapped, setTapped] = useState(false);
+  return (
+    <div
+      className={cn("mobile-card", tapped && "mobile-card--active")}
+      onTouchStart={() => setTapped(true)}
+      onTouchEnd={() => setTimeout(() => setTapped(false), 350)}
+    >
+      {children}
+    </div>
+  );
+}
+
 import imgBoiledCorn from "@/assets/menu/Boiled Corn.webp";
 import imgBoiledPalliMasala from "@/assets/menu/Boiled Palli Masala.png";
 import imgFrenchFries from "@/assets/menu/French Fries.webp";
@@ -225,7 +239,7 @@ export default function Menu() {
       {/* Header */}
       <div className="py-14 text-center relative border-b border-white/5 bg-zinc-950">
         <div className="absolute inset-0 flex justify-center items-center opacity-15 pointer-events-none overflow-hidden">
-          <span className="text-[20vw] font-display font-bold whitespace-nowrap text-primary">MENU</span>
+          <span className="text-[35vw] md:text-[20vw] font-display font-bold whitespace-nowrap text-primary">MENU</span>
         </div>
         <div className="relative z-10 max-w-4xl mx-auto px-4">
           <h1 className="text-5xl md:text-7xl text-white font-display mb-6">
@@ -292,7 +306,29 @@ export default function Menu() {
                         </h3>
                         <div className="h-[1px] flex-grow bg-white/10" />
                       </div>
-                      <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-16">
+                      {/* Mobile: 2-column card grid */}
+                      <div className="grid grid-cols-2 gap-3 md:hidden">
+                        {items.map((item, idx) => (
+                          <MobileCard key={idx} item={item}>
+                            <div className="overflow-hidden rounded-sm border border-white/10 aspect-[4/3]">
+                              <PlaceholderImage
+                                label={item.imageLabel}
+                                src={item.img}
+                                className="w-full h-full object-cover"
+                              />
+                            </div>
+                            <div className="p-2">
+                              <div className="flex items-center justify-between gap-1">
+                                <h3 className="text-sm text-white font-display leading-tight line-clamp-1">{item.name}</h3>
+                                <span className="text-primary font-display text-sm whitespace-nowrap ml-1">₹{item.price}</span>
+                              </div>
+                              <p className="text-white/50 text-xs mt-1 leading-snug line-clamp-2">{item.desc}</p>
+                            </div>
+                          </MobileCard>
+                        ))}
+                      </div>
+                      {/* Desktop list layout */}
+                      <div className="hidden md:grid md:grid-cols-2 gap-x-12 gap-y-16">
                         {items.map((item, idx) => (
                           <div key={idx} className="group flex flex-col sm:flex-row gap-6 items-start">
                             <div className="w-full sm:w-40 h-48 sm:h-40 shrink-0 overflow-hidden border border-white/10 rounded-sm">
@@ -332,7 +368,52 @@ export default function Menu() {
                         </h3>
                         <div className="h-[1px] flex-grow bg-white/10" />
                       </div>
-                      <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-16">
+                      {/* Mobile: 2-column card grid */}
+                      <div className="grid grid-cols-2 gap-3 md:hidden">
+                        {items.map((item, idx) => {
+                          const hasVariants = item.variants && item.variants.length > 0;
+                          const vi = getVariantIndex(item.name);
+                          const displayPrice = hasVariants ? item.variants![vi].price : item.price;
+                          return (
+                            <MobileCard key={idx} item={item}>
+                              <div className="overflow-hidden rounded-sm border border-white/10 aspect-[4/3]">
+                                <PlaceholderImage
+                                  label={item.imageLabel}
+                                  src={item.img}
+                                  className="w-full h-full object-cover"
+                                />
+                              </div>
+                              <div className="p-2">
+                                <div className="flex items-center justify-between gap-1">
+                                  <h3 className="text-sm text-white font-display leading-tight line-clamp-1">{item.name}</h3>
+                                  <span className="text-primary font-display text-sm whitespace-nowrap ml-1">₹{displayPrice}</span>
+                                </div>
+                                <p className="text-white/50 text-xs mt-1 leading-snug line-clamp-2">{item.desc}</p>
+                                {hasVariants && (
+                                  <div className="mt-2 flex flex-wrap gap-1">
+                                    {item.variants!.map((v, vIdx) => (
+                                      <button
+                                        key={v.label}
+                                        onClick={() => setVariantIndex(item.name, vIdx)}
+                                        className={cn(
+                                          "px-2 py-0.5 text-[10px] font-display tracking-wider uppercase rounded border transition-all duration-200",
+                                          vi === vIdx
+                                            ? "border-primary text-primary bg-primary/10"
+                                            : "border-white/10 text-white/40"
+                                        )}
+                                      >
+                                        {v.label}
+                                      </button>
+                                    ))}
+                                  </div>
+                                )}
+                              </div>
+                            </MobileCard>
+                          );
+                        })}
+                      </div>
+                      {/* Desktop list layout */}
+                      <div className="hidden md:grid md:grid-cols-2 gap-x-12 gap-y-16">
                         {items.map((item, idx) => {
                           const hasVariants = item.variants && item.variants.length > 0;
                           const vi = getVariantIndex(item.name);
@@ -384,30 +465,56 @@ export default function Menu() {
                 })}
               </div>
             ) : (
-              /* Default grid layout for other categories */
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-x-12 gap-y-16">
-                {menuData[activeCategory].map((item, idx) => (
-                  <div key={idx} className="group flex flex-col sm:flex-row gap-6 items-start">
-                    <div className="w-full sm:w-40 h-48 sm:h-40 shrink-0 overflow-hidden border border-white/10 rounded-sm">
-                      <PlaceholderImage
-                        label={item.imageLabel}
-                        src={item.img}
-                        className="w-full h-full transform group-hover:scale-110 transition-transform duration-700"
-                      />
-                    </div>
-                    <div className="flex flex-col justify-center pt-2">
-                      <div className="flex items-center gap-4 mb-3">
-                        <h3 className="text-2xl text-white font-display tracking-wide">{item.name}</h3>
-                        <div className="h-[1px] flex-grow bg-white/10"></div>
-                        {item.price && (
-                          <span className="text-primary font-display text-lg whitespace-nowrap">₹{item.price}</span>
-                        )}
+              /* Default grid layout for other categories (e.g. Breads) */
+              <>
+                {/* Mobile: 2-column card grid */}
+                <div className="grid grid-cols-2 gap-3 md:hidden">
+                  {menuData[activeCategory].map((item, idx) => (
+                    <MobileCard key={idx} item={item}>
+                      <div className="overflow-hidden rounded-sm border border-white/10 aspect-[4/3]">
+                        <PlaceholderImage
+                          label={item.imageLabel}
+                          src={item.img}
+                          className="w-full h-full object-cover"
+                        />
                       </div>
-                      <p className="text-white/60 leading-relaxed font-light">{item.desc}</p>
+                      <div className="p-2">
+                        <div className="flex items-center justify-between gap-1">
+                          <h3 className="text-sm text-white font-display leading-tight line-clamp-1">{item.name}</h3>
+                          {item.price && (
+                            <span className="text-primary font-display text-sm whitespace-nowrap ml-1">₹{item.price}</span>
+                          )}
+                        </div>
+                        <p className="text-white/50 text-xs mt-1 leading-snug line-clamp-2">{item.desc}</p>
+                      </div>
+                    </MobileCard>
+                  ))}
+                </div>
+                {/* Desktop list layout */}
+                <div className="hidden md:grid md:grid-cols-2 gap-x-12 gap-y-16">
+                  {menuData[activeCategory].map((item, idx) => (
+                    <div key={idx} className="group flex flex-col sm:flex-row gap-6 items-start">
+                      <div className="w-full sm:w-40 h-48 sm:h-40 shrink-0 overflow-hidden border border-white/10 rounded-sm">
+                        <PlaceholderImage
+                          label={item.imageLabel}
+                          src={item.img}
+                          className="w-full h-full transform group-hover:scale-110 transition-transform duration-700"
+                        />
+                      </div>
+                      <div className="flex flex-col justify-center pt-2">
+                        <div className="flex items-center gap-4 mb-3">
+                          <h3 className="text-2xl text-white font-display tracking-wide">{item.name}</h3>
+                          <div className="h-[1px] flex-grow bg-white/10"></div>
+                          {item.price && (
+                            <span className="text-primary font-display text-lg whitespace-nowrap">₹{item.price}</span>
+                          )}
+                        </div>
+                        <p className="text-white/60 leading-relaxed font-light">{item.desc}</p>
+                      </div>
                     </div>
-                  </div>
-                ))}
-              </div>
+                  ))}
+                </div>
+              </>
             )}
           </motion.div>
         </AnimatePresence>
