@@ -203,7 +203,7 @@ export default function Home() {
               {[
                 { icon: GlassWater, title: "Master Mixology", desc: "Award-winning bartenders crafting signature libations with premium spirits." },
                 { icon: Utensils, title: "Culinary Art", desc: "A modern fusion menu designed to delight the palate and complement your drinks." },
-                { icon: Music, title: "Electric Vibe", desc: "Curated soundtracks and live DJs setting the perfect tone for your evening." }
+                { icon: Music, title: "Electric Vibe", desc: "Catch every IPL thrill on our big screens with an electrifying matchday atmosphere." }
               ].map((feature, i) => (
                 <motion.div key={i} variants={fadeUp} className="glass-panel p-10 text-center flex flex-col items-center group h-full md:hover:-translate-y-2 transition-transform duration-500">
                   <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mb-6 group-hover:scale-110 group-hover:bg-primary/20 transition-all duration-500">

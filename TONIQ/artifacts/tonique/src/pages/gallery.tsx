@@ -11,6 +11,7 @@ import imgOpenDining from "@/assets/gallery/open dining.jpg";
 import imgSeating from "@/assets/gallery/seating.jpeg";
 import imgSofa from "@/assets/gallery/sofa.jpeg";
 import imgPartyHall from "@/assets/gallery/party_hall.png";
+import imgParty2 from "@/assets/gallery/PARTY2.jpeg";
 import imgParkingIn from "@/assets/gallery/IN.jpeg";
 import imgParkingOut from "@/assets/gallery/OUT.jpeg";
 import imgParkingOut2 from "@/assets/gallery/OUT2.jpeg";
@@ -46,6 +47,15 @@ const gallerySections: GallerySection[] = [
       { label: "Lounge Area", img: imgSofa },
       { label: "Vibe", img: imgBar3 },
       { label: "Live DJ", img: imgBarWhatsapp }
+    ]
+  },
+  {
+    title: "Party Hall",
+    images: [
+      { label: "Front View", img: imgPartyHall },
+      { label: "Hall Setup", img: imgParty2 },
+      { label: "Celebration Area", img: imgPartyHall },
+      { label: "Gatherings", img: imgParty2 }
     ]
   },
   {
