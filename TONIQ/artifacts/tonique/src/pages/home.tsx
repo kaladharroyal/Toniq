@@ -15,7 +15,7 @@ import imgOpenDining from "@/assets/gallery/open dining.jpg";
 import imgSofa from "@/assets/gallery/sofa.jpeg";
 import imgBar3 from "@/assets/gallery/bar3.jpeg";
 import imgBarWhatsapp from "@/assets/gallery/bar_whatsapp.jpeg";
-import imgChandelierView from "@/assets/gallery/chandelier_view.png";
+import imgPartyHall from "@/assets/gallery/party_hall.png";
 
 const fadeUp: Variants = {
   hidden: { opacity: 0, y: 30 },
@@ -290,7 +290,7 @@ export default function Home() {
       {/* CTA Section */}
       {/* <section className="py-32 relative">
         <div className="absolute inset-0 z-0 opacity-40">
-          <PlaceholderImage src={imgChandelierView} label="Dark Moody Texture" hideLabel className="w-full h-full object-cover" />
+          <PlaceholderImage src={imgPartyHall} label="Party Hall" hideLabel className="w-full h-full object-cover" />
         </div>
         <div className="relative z-10 max-w-4xl mx-auto px-4 text-center">
           <h2 className="text-5xl md:text-7xl text-white font-display mb-8">Join The Night</h2>

@@ -10,7 +10,10 @@ import imgBar3 from "@/assets/gallery/bar3.jpeg";
 import imgOpenDining from "@/assets/gallery/open dining.jpg";
 import imgSeating from "@/assets/gallery/seating.jpeg";
 import imgSofa from "@/assets/gallery/sofa.jpeg";
-import imgChandelierView from "@/assets/gallery/chandelier_view.png";
+import imgPartyHall from "@/assets/gallery/party_hall.png";
+import imgParkingIn from "@/assets/gallery/IN.jpeg";
+import imgParkingOut from "@/assets/gallery/OUT.jpeg";
+import imgParkingOut2 from "@/assets/gallery/OUT2.jpeg";
 
 type GallerySection = {
   title: string;
@@ -24,7 +27,7 @@ const gallerySections: GallerySection[] = [
       { label: "Main Floor", img: imgOpenDining },
       { label: "Opulent Tables", img: imgSeating },
       { label: "Intimate Booths", img: imgSofa },
-      { label: "Chandelier View", img: imgChandelierView }
+      { label: "Party Hall", img: imgPartyHall }
     ]
   },
   {
@@ -39,10 +42,19 @@ const gallerySections: GallerySection[] = [
   {
     title: "Ambiance",
     images: [
-      { label: "Lighting Details", img: imgChandelierView },
+      { label: "Party Hall", img: imgPartyHall },
       { label: "Lounge Area", img: imgSofa },
       { label: "Vibe", img: imgBar3 },
       { label: "Live DJ", img: imgBarWhatsapp }
+    ]
+  },
+  {
+    title: "Parking",
+    images: [
+      { label: "Arrival IN", img: imgParkingIn },
+      { label: "Departure OUT", img: imgParkingOut },
+      { label: "Valet Service", img: imgParkingOut2 },
+      { label: "Parking Zone", img: imgParkingIn }
     ]
   }
 ];
