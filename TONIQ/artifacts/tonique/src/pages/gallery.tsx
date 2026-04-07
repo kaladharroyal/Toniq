@@ -67,7 +67,7 @@ const getGridSpan = (sectionIdx: number, imgIdx: number) => {
 };
 
 export default function Gallery() {
-  const [selectedImg, setSelectedImg] = useState<{ src?: string, label: string } | null>(null);
+  const [selectedImg, setSelectedImg] = useState<{ img?: string, label: string } | null>(null);
 
   // Lock scroll when modal is open
   if (typeof document !== "undefined") {
@@ -161,7 +161,7 @@ export default function Gallery() {
               animate={{ scale: 1, y: 0 }} 
               exit={{ scale: 0.9, y: 20 }}
               transition={{ duration: 0.4, ease: [0.23, 1, 0.32, 1] }}
-              src={selectedImg.src} 
+              src={selectedImg.img} 
               alt={selectedImg.label} 
               className="max-w-full max-h-[85vh] object-contain rounded-md shadow-2xl border border-white/10"
               onClick={(e) => e.stopPropagation()} // Prevent close when clicking the image
