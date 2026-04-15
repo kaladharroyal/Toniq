@@ -59,7 +59,7 @@ export function Footer() {
             <ul className="text-white/60 space-y-2 text-sm sm:text-base">
               <li className="flex flex-col md:flex-row justify-between w-full items-center md:items-start gap-1 md:gap-4 md:max-w-[200px]">
                 <span>Daily</span>
-                <span className="text-primary text-xs sm:text-sm font-semibold">10AM – 11PM</span>
+                <span className="text-primary text-xs sm:text-sm font-semibold">10AM – 12AM</span>
               </li>
             </ul>
           </div>

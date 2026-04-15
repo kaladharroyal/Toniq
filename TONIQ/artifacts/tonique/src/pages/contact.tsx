@@ -73,7 +73,7 @@ export default function Contact() {
             >
               <Phone className="w-6 h-6 sm:w-8 sm:h-8 text-primary mb-3 md:mb-4" />
               <h3 className="text-base sm:text-lg md:text-xl text-white font-display mb-1 md:mb-2">Phone</h3>
-              <p className="text-white/60 font-light text-[10px] sm:text-xs md:text-base leading-relaxed">+91 99897 77077<br />Available daily 10AM – 11PM</p>
+              <p className="text-white/60 font-light text-[10px] sm:text-xs md:text-base leading-relaxed">+91 99897 77077<br />Available daily 10AM – 12AM</p>
             </div>
 
             <div
@@ -104,7 +104,7 @@ export default function Contact() {
                   </span>
                 )}
               </h3>
-              <p className="text-white/60 font-light text-xs sm:text-sm md:text-base leading-relaxed">Open daily<br />10AM – 11PM</p>
+              <p className="text-white/60 font-light text-xs sm:text-sm md:text-base leading-relaxed">Open daily<br />10AM – 12AM</p>
             </div>
           </div>
 
